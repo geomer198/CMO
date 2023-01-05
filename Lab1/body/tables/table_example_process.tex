@@ -1,0 +1,27 @@
+\begin{table}[H]
+	\renewcommand{\tablename}{Таблица}
+	\caption{Параметры обслуживаемых процессов.}
+	\begin{tabularx}{1\textwidth}{
+			| >{\centering\arraybackslash}p{1cm} | >{\centering\arraybackslash}p{5.7cm} | >{\centering\arraybackslash}p{0.5cm} | >{\centering\arraybackslash}p{0.5cm} | >{\centering\arraybackslash}p{0.5cm} | >{\centering\arraybackslash}p{0.5cm} | >{\centering\arraybackslash}p{0.5cm} | >{\centering\arraybackslash}p{0.5cm} | >{\centering\arraybackslash}p{0.5cm} | >{\centering\arraybackslash}p{0.5cm} | >{\centering\arraybackslash}p{0.5cm} | >{\centering\arraybackslash}p{0.5cm} |
+		}
+		\hline
+		\multirow{3}{1cm}{№ процесс
+			а} & 
+		\multirow{3}{6cm}{Среднее количество вычислительных 
+			операций, выполняемых 
+			при обслуживаниях процесса 
+			[Мфлоп] } & 
+		\multicolumn{10}{X|}{Среднее число операций обращения к файлам данных при обслуживании процесса (N i j) }
+		\\
+		\cline{3-12}
+		& &  \multicolumn{10}{X|}{Номера файлов, к которым выполняется обращение} \\
+		\cline{3-12}
+		& & F1 & F2 & F3 & F4 & F5 & F6 & F7 & F8 & F9 & F10 \\ \hline
+		7 & 700 & 20 & - & - & 10 & - & - & 2 & - & 4 & - \\ \hline
+		14 & 400 & 10 & - & 30 & 14 & - & - & 4 & - & 6 & - \\ \hline
+		10 & 1000 & - & 30 & - & - & - & 20 & 6 & - & 8 & - \\ \hline
+		19 & 900 & - & 80 & - & 30 & - & - & 8 & - & - & 4 \\ \hline
+		1 & 100 & 20 & 10 & - & - & - & - & 4 & 2 & - & - \\ 
+		\hline
+	\end{tabularx}\label{tab:table1}
+\end{table}

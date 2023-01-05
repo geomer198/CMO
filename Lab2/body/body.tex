@@ -1,0 +1,160 @@
+\section*{Цель}
+
+Оценка и исследование дисциплин обслуживания потоков процессов при планировании их исполнения на основе приоритетных дисциплин с относительными и абсолютными приоритетами.
+
+\section*{Исходные данные}
+
+Данные из таблиц \ref{table:1}-\ref{table:4} являются исходными данными для выполнения лабораторной работы.
+
+\input{body/tables/table_task.tex}
+\input{body/tables/table_example_process.tex}
+\input{body/tables/table_op_files_data.tex}
+\input{body/tables/table_output_memory.tex}
+
+\subsection*{Ход работы}
+
+\subsubsection*{Часть 1}
+
+истема рассматривается как один ресурс, обеспечивающий обслуживание группы $M$ входных потоков процессов $Z_1, Z_2, Z_3, ..., Z$, которым присвоены относительные приоритеты $1,2,3,...,M$. Причём, процесс $Z_p$, поступивших в очередь $O_p$, будет принят к обслуживанию только при отсутствия в других очередях процессов с более высокими приоритетами. Процессы принимаются для обслуживания из каждой очереди $O_p$ в порядку из поступления в очередь -- локально применяется бесприоритетная дисциплина обслуживания \textbf{FIFO}.
+
+При использовании дисциплины FIFO в случае обслуживания нескольких потоков процессов времена $\omega_i$ ожидания процессов для обслуживания в системе одинаковы и определяются по выражению (\ref{fig:m1}):
+
+\begin{align}
+	\omega_k = \sum_{i=1}^{M}\frac{\rho_j\vartheta_j(1+v_i^2)}{2(1-R_k)(1-R_{k-1})}
+	\label{fig:m1}
+\end{align}
+
+где
+
+$M$ -- количество процессов, поступающих на обслуживание в систему, \\
+$R = (\rho_1 + \rho_2 + \rho_3 + ... + \rho_m)$, \\
+$\rho_i$ - коэффициент загрузки ресурсов системы $i$ -- ым процессом. \\
+Значение $\rho_i$ определяется по выражению (\ref{fig:m2})\\
+
+\begin{align}
+	\rho_i = \lambda_i\vartheta_i 
+	\label{fig:m2}
+\end{align}
+
+где $\lambda_i$ -- интенсивность $i$ -- потока процессов на обслуживание в систему; \\
+
+\begin{align}
+\vartheta = max (\vartheta_1,\vartheta_2,\vartheta_3,...,\vartheta_k)
+\label{formul:3}
+\end{align}
+
+$\vartheta_k$ -- длительность обслуживания процесса в $k$-ом ресурсе системы.
+
+Длительность обслуживания процесса в $k$--ом ресурсе системы определяется по выражению \ref{formul:3}
+
+\begin{align}
+	\vartheta_{pi} =  \Theta_i/V_p
+	\label{formul:4}
+\end{align}
+
+где 
+
+$V_p$ --производительность процессора, \\
+$\Theta_i$ --количество вычислительных операций, выполняемых при обслуживании $i$-го процесса в моделируемой системе. Аналогично определяются длительности обслуживания процесса $\vartheta_j$ в других $j$-ых функциональных модулях и подсистемах.
+
+В таблицах \ref{table:5}-\ref{table:6} приведены результаты основных расчетов.
+
+\input{body/tables/table_computing_vi_0.tex}
+\input{body/tables/table_computing_vi_1.tex}
+
+Графики зависимости при производительности процессора $V_p$,  относительными приоритетами представлены на рисунках \ref{img:1}-\ref{img:4}
+
+\begin{figure}[H]
+	\renewcommand{\figurename}{Рисунок}
+	\centering{\includegraphics[scale=0.70]{img_1}}
+	\caption{График зависимости $\omega(V_p)$ при $v_i = 0$}
+	\label{img:1}
+\end{figure}
+
+\begin{figure}[H]
+	\renewcommand{\figurename}{Рисунок}
+	\centering{\includegraphics[scale=0.70]{img_2}}
+	\caption{График зависимости $u(V_p)$ при $v_i = 0$}
+	\label{img:2}
+\end{figure}
+
+\begin{figure}[H]
+	\renewcommand{\figurename}{Рисунок}
+	\centering{\includegraphics[scale=0.70]{img_3}}
+	\caption{График зависимости $\omega(V_p)$ при $v_i = 1$}
+	\label{img:3}
+\end{figure}
+
+\begin{figure}[H]
+	\renewcommand{\figurename}{Рисунок}
+	\centering{\includegraphics[scale=0.70]{img_4}}
+	\caption{График зависимости $u(V_p)$ при $v_i = 1$}
+	\label{img:4}
+\end{figure}
+
+\subsubsection*{Часть 2}
+
+Длительность ожидания процесса обслуживания в системе при применении дисциплин обслуживания с абсолютными приоритетами рассчитывается по выражению:
+
+\begin{align}
+\omega_k = \frac{\vartheta_iR_{k-1}}{(1-R_k)} + \sum_{i=1}^{M}\frac{\rho_j\vartheta_j(1+v^2_i)}{2(1-R_k)(1-R_{k-1})}
+\label{formul:5}
+\end{align}
+
+Время обслуживания потока в системе вычисляется по формуле:
+
+\begin{align}
+u_i = \sum_{j=1}^{k}\omega_j+\sum_{j=1}^{k}\vartheta_j
+\label{formul:6}
+\end{align}
+
+\begin{align}
+u_i = \sum_{i=1}^{M}u_j
+\label{formul:7}
+\end{align}
+
+где
+$M$ -- количество исполняемых в системе процессов, \\
+$k$ -- количество ресурсов в системе, используемых при обслуживании процесса, \\
+$\omega_j$ -- длительность ожидания $i$-го процесса обслуживания в $j$-ом ресурсе системы, \\
+$\vartheta_j$ -- длительность обслуживания $i$-го процесса в $j$-ом ресурсе системы. \\
+
+В таблицах \ref{table:7}-\ref{table:8} приведены результаты основных расчетов.
+
+\input{body/tables/table_result_computing_vi_0.tex}
+\input{body/tables/table_result_computing_vi_1.tex}
+
+Графики зависимости при производительности процессора Vp, с относительными приоритетами представлены на рисунках \ref{img:5}-\ref{img:8}.
+
+\begin{figure}[H]
+	\renewcommand{\figurename}{Рисунок}
+	\centering{\includegraphics[scale=0.70]{img_5}}
+	\caption{График зависимости $\omega(V_p)$ при $v_i = 0$}
+	\label{img:5}
+\end{figure}
+
+\begin{figure}[H]
+	\renewcommand{\figurename}{Рисунок}
+	\centering{\includegraphics[scale=0.70]{img_6}}
+	\caption{График зависимости $u(V_p)$ при $v_i = 0$}
+	\label{img:6}
+\end{figure}
+
+\begin{figure}[H]
+	\renewcommand{\figurename}{Рисунок}
+	\centering{\includegraphics[scale=0.70]{img_7}}
+	\caption{График зависимости $\omega(V_p)$ при $v_i = 1$}
+	\label{img:7}
+\end{figure}
+
+\begin{figure}[H]
+	\renewcommand{\figurename}{Рисунок}
+	\centering{\includegraphics[scale=0.70]{img_8}}
+	\caption{График зависимости $u(V_p)$ при $v_i = 1$}
+	\label{img:8}
+\end{figure}
+
+\newpage
+
+
+
